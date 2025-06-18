@@ -6,6 +6,9 @@ import { Category } from './category/models/category.model';
 import { CourierModule } from './courier/courier.module';
 import { AdminModule } from './admin/admin.module';
 import { SocialModule } from './social/social.module';
+import { Courier } from './courier/model/courier.model';
+import { Admin } from './admin/models/admin.model';
+import { Social } from './social/models/social.model';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -19,7 +22,7 @@ import { SocialModule } from './social/social.module';
     username: process.env.PG_USER,
     password: process.env.PG_PASSWORD,
     database: process.env.PG_DB,
-    models:[Category],
+    models:[Category, Courier, Admin, Social],
     autoLoadModels: true,
     logging: true,
     sync: { alter: true },
