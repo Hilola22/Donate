@@ -17,6 +17,14 @@ import { DonationsModule } from "./donations/donations.module";
 import { Donation } from "./donations/models/donation.model";
 import { CreatorSocialModule } from "./creator-social/creator-social.module";
 import { CreatorSocial } from "./creator-social/models/creator-social.model";
+import { RoleModule } from "./role/role.module";
+import { AdminRoleModule } from "./admin-role/admin-role.module";
+import { Role } from "./role/models/role.model";
+import { AdminRole } from "./admin-role/models/admin-role.model";
+import { ProductsModule } from "./products/products.module";
+import { ProductImageModule } from "./product-image/product-image.module";
+import { Product } from "./products/models/product.model";
+import { ProductImage } from "./product-image/models/product-image.model";
 
 @Module({
   imports: [
@@ -39,7 +47,11 @@ import { CreatorSocial } from "./creator-social/models/creator-social.model";
         Users,
         Notifications,
         Donation,
-        CreatorSocial
+        CreatorSocial,
+        Role,
+        AdminRole,
+        Product,
+        ProductImage,
       ],
       autoLoadModels: true,
       logging: true,
@@ -52,7 +64,11 @@ import { CreatorSocial } from "./creator-social/models/creator-social.model";
     UsersModule,
     NotificationsModule,
     DonationsModule,
-    CreatorSocialModule
+    CreatorSocialModule,
+    RoleModule,
+    AdminRoleModule,
+    ProductsModule,
+    ProductImageModule,
   ],
   controllers: [],
   providers: [],

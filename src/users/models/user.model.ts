@@ -2,6 +2,7 @@ import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { Notifications } from "../../notifications/models/notification.model";
 import { Donation } from "../../donations/models/donation.model";
 import { CreatorSocial } from "../../creator-social/models/creator-social.model";
+import { Product } from "../../products/models/product.model";
 
 export enum UserRole {
   CREATOR = "creator",
@@ -76,6 +77,9 @@ export class Users extends Model<Users, IUserCreationAttr> {
   @HasMany(() => Donation, "creator_id")
   createdDonations: Donation[];
 
-  @HasMany(()=> CreatorSocial, "social_id")
+  @HasMany(() => CreatorSocial, "social_id")
   socialLinks: CreatorSocial[];
+
+  @HasMany(() => Product, "creator_id")
+  products: Product[];
 }
