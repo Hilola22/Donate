@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import { CreatorSocial } from "../../creator-social/models/creator-social.model";
 
 interface ISocialAttr{
     name: string;
@@ -25,4 +26,7 @@ export class Social extends Model<Social, ISocialAttr> {
     unique: true,
   })
   declare social_icon: string;
+
+  @HasMany(() => CreatorSocial, "social_id")
+  creatorLinks: CreatorSocial[];
 }
