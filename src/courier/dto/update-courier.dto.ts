@@ -1,14 +1,4 @@
-export enum VehicleType {
-  BIKE = "bike",
-  CAR = "car",
-  SCOOTER = "scooter",
-}
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateCourierDto } from "./create-courier.dto";
 
-export class UpdateCourierDto {
-  full_name?: string;
-  phone_number?: string;
-  vehicle_type?: VehicleType;
-  vehicle_plate_number?: string;
-  telegram_link?: string;
-  is_active?: boolean;
-}
+export class UpdateUserDto extends PartialType(CreateCourierDto) {}

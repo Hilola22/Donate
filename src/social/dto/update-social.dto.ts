@@ -1,5 +1,4 @@
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateSocialDto } from "./create-social.dto";
 
-export class UpdateSocialDto {
-  name?: string;
-  social_icon?:string;
-}
+export class UpdateUserDto extends PartialType(CreateSocialDto) {}

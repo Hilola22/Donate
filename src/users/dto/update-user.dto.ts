@@ -1,14 +1,4 @@
-export enum UserRole {
-  CREATOR = "creator",
-  USER = "user",
-}
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateUserDto } from "./create-user.dto";
 
-export class UpdateUserDto {
-  full_name: string;
-  email: string;
-  password: string;
-  role: UserRole;
-  bio: string;
-  avatar_url: string;
-  banner_url: string;
-}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}

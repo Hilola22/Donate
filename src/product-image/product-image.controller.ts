@@ -12,8 +12,9 @@ import { ProductImageService } from "./product-image.service";
 import { CreateProductImageDto } from "./dto/create-product-image.dto";
 import { UpdateProductImageDto } from "./dto/update-product-image.dto";
 import { ProductImage } from "./models/product-image.model";
-import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 
+@ApiTags("Mahsulot rasmlari")
 @Controller("product-image")
 export class ProductImageController {
   constructor(private readonly productImageService: ProductImageService) {}
