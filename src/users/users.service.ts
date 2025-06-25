@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/sequelize";
 import { Users } from "./models/user.model";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { Role } from "../role/models/role.model";
 
 @Injectable()
 export class UsersService {
@@ -18,6 +19,16 @@ export class UsersService {
 
   findOne(id: number) {
     return this.usersModel.findByPk(id);
+  }
+
+  async getUserByEmail(email: string) {
+    if (!email) {
+      throw new Error("Email is required");
+    }
+    const user = await this.usersModel.findOne({
+      where: { email },
+    });
+    return user?.dataValues;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

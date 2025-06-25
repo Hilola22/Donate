@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateAdminRoleDto {
   @ApiProperty({
@@ -7,7 +7,7 @@ export class CreateAdminRoleDto {
     description: "Admin rolining IDsi",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   role_id: number;
 
   @ApiProperty({
@@ -15,6 +15,6 @@ export class CreateAdminRoleDto {
     description: "Admin IDsi",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   admin_id: number;
 }

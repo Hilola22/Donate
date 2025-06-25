@@ -5,22 +5,28 @@ import { ProductImage } from "./models/product-image.model";
 import { InjectModel } from "@nestjs/sequelize";
 import { ProductsService } from "../products/products.service";
 import { Product } from "../products/models/product.model";
+import { FilesService } from "../files/files.service";
 
 @Injectable()
 export class ProductImageService {
   constructor(
     @InjectModel(ProductImage) private productImageModel: typeof ProductImage,
-    private productService: ProductsService
+    private readonly productService: ProductsService,
+    private readonly fileService: FilesService
   ) {}
 
-  async create(createProductImageDto: CreateProductImageDto) {
+  async create(createProductImageDto: CreateProductImageDto, image_url: any) {
     const product = await this.productService.findOne(
       createProductImageDto.product_id
     );
     if (!product) {
       throw new NotFoundException("Product not found");
     }
-    return this.productImageModel.create(createProductImageDto);
+    const fileName = await this.fileService.saveFile(image_url);
+    return this.productImageModel.create({
+      ...createProductImageDto,
+      image_url: fileName,
+    });
   }
 
   findAll() {

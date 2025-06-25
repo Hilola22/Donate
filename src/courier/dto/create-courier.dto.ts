@@ -1,5 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsEmpty, IsEnum, IsPhoneNumber, IsString } from "class-validator";
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsEnum,
+  IsPhoneNumber,
+  IsString,
+} from "class-validator";
 
 export enum VehicleType {
   BIKE = "bike",
@@ -13,7 +19,7 @@ export class CreateCourierDto {
     description: "Kuryer ism-familyasi",
   })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   full_name: string;
 
   @ApiProperty({
@@ -21,7 +27,7 @@ export class CreateCourierDto {
     description: "Kuryer telefon raqami",
   })
   @IsPhoneNumber("UZ")
-  @IsEmpty()
+  @IsNotEmpty()
   phone_number: string;
 
   @ApiProperty({

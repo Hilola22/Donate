@@ -5,8 +5,9 @@ import { CourierController } from './courier.controller';
 import { CourierService } from './courier.service';
 
 @Module({
-    imports: [SequelizeModule.forFeature([Courier])],
-    controllers: [CourierController],
-    providers: [CourierService]
+  imports: [SequelizeModule.forFeature([Courier])],
+  controllers: [CourierController],
+  providers: [CourierService],
+  exports: [CourierService],
 })
 export class CourierModule {}

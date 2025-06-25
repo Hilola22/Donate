@@ -1,5 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsDecimal, IsEmpty, IsNumber, IsString } from "class-validator";
+import {
+  IsBoolean,
+  IsDecimal,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from "class-validator";
 
 export class CreateProductDto {
   @ApiProperty({
@@ -7,7 +13,7 @@ export class CreateProductDto {
     description: "Mahsulot nomi",
   })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   name: string;
 
   @ApiProperty({
@@ -43,7 +49,7 @@ export class CreateProductDto {
     description: "Mahsulotni egasi, userning Id raqami",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   creator_id: number;
 
   @ApiProperty({
@@ -51,6 +57,6 @@ export class CreateProductDto {
     description: "Mahsulotni kategoriyasi Id raqami",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   category_id: number;
 }

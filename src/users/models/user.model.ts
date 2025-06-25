@@ -4,6 +4,7 @@ import { Donation } from "../../donations/models/donation.model";
 import { CreatorSocial } from "../../creator-social/models/creator-social.model";
 import { Product } from "../../products/models/product.model";
 import { ApiProperty } from "@nestjs/swagger";
+import { ProductOrder } from "../../product-orders/models/product-order.model";
 
 export enum UserRole {
   CREATOR = "creator",
@@ -54,7 +55,7 @@ export class Users extends Model<Users, IUserCreationAttr> {
     description: "User paroli",
   })
   @Column({
-    type: DataType.STRING(20),
+    type: DataType.STRING,
     allowNull: false,
   })
   declare password: string;
@@ -111,4 +112,7 @@ export class Users extends Model<Users, IUserCreationAttr> {
 
   @HasMany(() => Product, "creator_id")
   products: Product[];
+
+  @HasMany(() => ProductOrder)
+  orders: ProductOrder[];
 }

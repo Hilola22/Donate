@@ -1,5 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsDecimal, IsEmpty, IsEnum, IsNumber, IsString } from "class-validator";
+import {
+  IsBoolean,
+  IsDecimal,
+  IsNotEmpty,
+  IsEnum,
+  IsNumber,
+  IsString,
+} from "class-validator";
 
 export enum PaymnetMethods {
   CLICK = "click",
@@ -16,7 +23,7 @@ export class CreateDonationDto {
     description: "Donat yuborayotgan user Id raqami",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   supporter_id: number;
 
   @ApiProperty({
@@ -24,7 +31,7 @@ export class CreateDonationDto {
     description: "Donat qabul qilayotgan user Id raqami",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   creator_id: number;
 
   @ApiProperty({

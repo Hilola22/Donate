@@ -11,6 +11,8 @@ import { Category } from "../../category/models/category.model";
 import { Users } from "../../users/models/user.model";
 import { ProductImage } from "../../product-image/models/product-image.model";
 import { ApiProperty } from "@nestjs/swagger";
+import { ProductOrder } from "../../product-orders/models/product-order.model";
+import { SavedItem } from "src/saved-items/models/saved-item.model";
 
 interface IProductCreationAttr {
   name: string;
@@ -105,4 +107,10 @@ export class Product extends Model<Product, IProductCreationAttr> {
 
   @HasMany(() => ProductImage)
   images: ProductImage[];
+
+  @HasMany(() => ProductOrder)
+  orders: ProductOrder[];
+
+  @HasMany(() => SavedItem)
+  savedItems: SavedItem[];
 }

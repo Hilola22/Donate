@@ -34,7 +34,7 @@ export class Admin extends Model<Admin, IAdminAttr> {
     description: "Adminning ism-familyasi",
   })
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.STRING(100),
     allowNull: false,
   })
   declare full_name: string;
@@ -55,7 +55,7 @@ export class Admin extends Model<Admin, IAdminAttr> {
     description: "Admin paroli",
   })
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.STRING,
   })
   declare password: string;
 

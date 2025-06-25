@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateCreatorSocialDto {
   @ApiProperty({
@@ -7,7 +7,7 @@ export class CreateCreatorSocialDto {
     description: "Creator user id raqami",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   creator_id: number;
 
   @ApiProperty({
@@ -15,7 +15,7 @@ export class CreateCreatorSocialDto {
     description: "Creator userning social id raqami",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
   social_id: number;
 
   @ApiProperty({

@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsBoolean,
   IsEmail,
-  IsEmpty,
+  IsNotEmpty,
   IsString,
   IsStrongPassword,
 } from "class-validator";
@@ -13,7 +13,7 @@ export class CreateAdminDto {
     description: "Admin ism-familyasi",
   })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   full_name: string;
 
   @ApiProperty({
@@ -21,7 +21,7 @@ export class CreateAdminDto {
     description: "Admin pochtasi",
   })
   @IsEmail()
-  @IsEmpty()
+  @IsNotEmpty()
   email: string;
 
   @ApiProperty({
@@ -30,7 +30,7 @@ export class CreateAdminDto {
   })
   @IsStrongPassword({ minLength: 6 })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   password: string;
 
   @ApiProperty({

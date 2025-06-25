@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import { ProductOrder } from "../../product-orders/models/product-order.model";
 
 export enum VehicleType {
   BIKE = "bike",
@@ -83,4 +84,7 @@ export class Courier extends Model<Courier, ICourierAttr> {
     type: DataType.BOOLEAN,
   })
   declare is_active: boolean;
+
+  @HasMany(() => ProductOrder)
+  orders: ProductOrder[];
 }

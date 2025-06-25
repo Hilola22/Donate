@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsEmpty, IsNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateProductImageDto {
   @ApiProperty({
@@ -7,7 +8,8 @@ export class CreateProductImageDto {
     description: "Mahsulot IDsi",
   })
   @IsNumber()
-  @IsEmpty()
+  @IsNotEmpty()
+  @Type(() => Number)
   product_id: number;
 
   @ApiProperty({
@@ -15,7 +17,7 @@ export class CreateProductImageDto {
     description: "Mahsulot rasmining urlni joylashtiring",
   })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   image_url: string;
 
   @ApiProperty({

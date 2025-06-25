@@ -21,8 +21,14 @@ export class AdminService {
     return this.adminModel.findByPk(id);
   }
 
-  async findByAdminName(full_name: string) {
-    return this.adminModel.findOne({ where: { full_name } });
+  async getAdminByEmail(email: string) {
+    if (!email) {
+      throw new Error("Email is required");
+    }
+    const admin = await this.adminModel.findOne({
+      where: { email },
+    });
+    return admin?.dataValues;
   }
 
   async updateAdmin(id: number, updateAdminDto: UpdateAdminDto) {

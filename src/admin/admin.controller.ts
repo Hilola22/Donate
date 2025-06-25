@@ -8,12 +8,17 @@ import {
   Patch,
   Post,
   Query,
+  Request,
+  UseGuards,
 } from "@nestjs/common";
 import { AdminService } from "./admin.service";
 import { CreateAdminDto } from "./dto/create-admin.dto";
 import { Admin } from "./models/admin.model";
 import { UpdateAdminDto } from "./dto/update-admin.dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { AdminAuthGuard } from "../common/guards/admin-auth.guard";
+import { AdminSelfGuard } from "../common/guards/admin-self.guard";
+import { emit } from "process";
 
 
 @ApiTags("Adminlar")
@@ -27,6 +32,7 @@ export class AdminController {
     description: "Yangi admin qo'shildi",
     type: Admin,
   })
+  // @UseGuards(AdminAuthGuard)
   @Post()
   async createAdmin(@Body() createAdminDto: CreateAdminDto): Promise<Admin> {
     return this.adminService.createAdmin(createAdminDto);
@@ -38,6 +44,7 @@ export class AdminController {
     description: "Adminlar: ",
     type: [Admin],
   })
+  @UseGuards(AdminAuthGuard)
   @Get()
   async getAllAdmins(): Promise<Admin[]> {
     return this.adminService.getAllAdmins();
@@ -49,6 +56,8 @@ export class AdminController {
     description: "Admin: ",
     type: Admin,
   })
+  @UseGuards(AdminSelfGuard)
+  @UseGuards(AdminAuthGuard)
   @Get(":id")
   async getAdminById(
     @Param("id", ParseIntPipe) id: number
@@ -56,15 +65,15 @@ export class AdminController {
     return this.adminService.getAdminById(id);
   }
 
-  @ApiOperation({ summary: "Admin ma'lumotlarini ism-familyasi orqali olish" })
+  @ApiOperation({ summary: "Admin ma'lumotlarini email orqali olish" })
   @ApiResponse({
     status: 200,
     description: "Admin: ",
     type: Admin,
   })
-  @Get()
-  async findByAdminName(@Query("full_name") full_name: string) {
-    return this.adminService.findByAdminName(full_name);
+  @Post("email")
+  async getAdminByEmail(@Body("email") email: string,) {
+    return this.adminService.getAdminByEmail(email);
   }
 
   @ApiOperation({ summary: "Admin ma'lumotlarini id orqali yangilash" })
@@ -73,6 +82,8 @@ export class AdminController {
     description: "Admin ma'lumotlari yangilandi! ",
     type: Admin,
   })
+  @UseGuards(AdminSelfGuard)
+  @UseGuards(AdminAuthGuard)
   @Patch(":id")
   async updateAdmin(
     @Param("id", ParseIntPipe) id: number,
@@ -87,6 +98,8 @@ export class AdminController {
     description: "Admin ma'lumotlari o'chirildi!",
     type: Admin,
   })
+  @UseGuards(AdminSelfGuard)
+  @UseGuards(AdminAuthGuard)
   @Delete(":id")
   async deleteAdmin(@Param("id", ParseIntPipe) id: number): Promise<string> {
     return this.adminService.deleteAdmin(id);

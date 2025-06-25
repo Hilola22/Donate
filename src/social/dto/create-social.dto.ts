@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class CreateSocialDto {
   @ApiProperty({
@@ -7,7 +7,7 @@ export class CreateSocialDto {
     description: "Ijtimoiy tarmoq nomi",
   })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   name: string;
 
   @ApiProperty({
@@ -15,6 +15,6 @@ export class CreateSocialDto {
     description: "Ijtimoiy tarmoq ikonkasi",
   })
   @IsString()
-  @IsEmpty()
+  @IsNotEmpty()
   social_icon: string;
 }
